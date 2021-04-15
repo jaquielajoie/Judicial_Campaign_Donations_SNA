@@ -3,6 +3,7 @@ import sys
 import argparse
 import numpy as np
 import pandas as pd
+from tabulate import tabulate
 
 
 def set_cmd_args(args):
@@ -23,5 +24,8 @@ if __name__ == '__main__':
 
     FILE_PATH = os.path.abspath(f"{cmd_file}")
 
-    df = pd.read_csv(FILE_PATH)
-    print(df.head())
+    cols = ['cycle', 'transaction.type', 'amount', 'date', 'contributor.name', 'recipient.party', 'recipient.type', 'recipient.state', 'seat', 'election.type']
+
+    df = pd.read_csv(FILE_PATH, names=cols)
+    print(tabulate(df[:25], headers='keys', tablefmt='psql'))
+    print(df.columns.values.tolist())
