@@ -24,8 +24,11 @@ if __name__ == '__main__':
 
     FILE_PATH = os.path.abspath(f"{cmd_file}")
 
-    cols = ['cycle', 'transaction.type', 'amount', 'date', 'contributor.name', 'recipient.party', 'recipient.type', 'recipient.state', 'seat', 'election.type']
+    cols = ['cycle', 'transaction.type', 'amount', 'date', 'contributor.name', 'recipient.name', 'recipient.party', 'recipient.type', 'recipient.state', 'seat', 'election.type']
 
     df = pd.read_csv(FILE_PATH, names=cols)
-    print(tabulate(df[:25], headers='keys', tablefmt='psql'))
-    print(df.columns.values.tolist())
+    df_all = pd.read_csv(FILE_PATH)
+    #print(tabulate(df[:25], headers='keys', tablefmt='psql'))
+    print(df_all.columns.values.tolist())
+    print(df_all.head())
+    #print(df[:5]["contributor.name"])
